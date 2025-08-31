@@ -11,9 +11,11 @@ cryptopay-hackathon/
 ├── backend/
 │   ├── main.py                    # FastAPI main application
 │   ├── config.json                # Configuration file
-│   ├── requirements.txt           # Python dependencies
-│   ├── SETUP_GUIDE.md            # Backend setup instructions
+│   ├── requirements.txt           # Python dependencies (generated)
 │   ├── API_DOCUMENTATION.md       # API documentation
+│   ├── debug_db.py                # Debug helpers for the DB
+│   ├── .env                       # Environment file (present)
+│   ├── .venv/                     # Local virtual environment folder
 │   ├── endpoints/
 │   │   ├── authentication.py      # Auth endpoints (login, register, magic links)
 │   │   ├── invoices.py            # Invoice CRUD operations
@@ -26,45 +28,76 @@ cryptopay-hackathon/
 │   └── __pycache__/               # Python cache files
 ├── frontend/
 │   ├── package.json               # Node.js dependencies
+│   ├── package-lock.json          # Lockfile
 │   ├── tsconfig.json              # TypeScript configuration
+│   ├── tsconfig.node.json         # Node TypeScript settings
+│   ├── next.config.js             # Next.js config
+│   ├── vite.config.ts             # Vite config (present but project uses Next)
 │   ├── .env                       # Environment variables
+│   ├── .env.development           # Development env
 │   ├── .env.local                 # Local environment overrides
 │   ├── README.md                  # Frontend documentation
-│   ├── public/
-│   │   └── index.html             # HTML template
-│   └── src/
-│       ├── index.tsx              # React entry point
-│       ├── App.tsx                # Main App component with routing
-│       ├── App.css                # Global styles
-│       ├── components/
-│       │   ├── Authentication/
-│       │   │   ├── Login.tsx      # Login form component
-│       │   │   └── Register.tsx   # Registration form component
-│       │   ├── Dashboard/
-│       │   │   └── Dashboard.tsx  # Dashboard with metrics
-│       │   ├── Invoices/
-│       │   │   ├── InvoiceList.tsx    # List all invoices
-│       │   │   └── CreateInvoice.tsx  # Create new invoice form
-│       │   ├── Payments/
-│       │   │   └── PaymentPage.tsx    # Public payment page
-│       │   ├── QRGenerator/
-│       │   │   └── QRGenerator.tsx    # QR code generator
-│       │   ├── EInvoice/
-│       │   │   └── EInvoice.tsx       # E-invoice management
-│       │   └── Common/
-│       │       └── Navbar.tsx         # Navigation bar
-│       ├── services/
-│       │   ├── api.ts             # Axios configuration
-│       │   ├── auth.ts            # Authentication API calls
-│       │   ├── invoices.ts        # Invoice API calls
-│       │   ├── payments.ts        # Payment API calls
-│       │   ├── qr.ts              # QR generation API calls
-│       │   └── einvoice.ts        # E-invoice API calls
-│       ├── hooks/
-│       │   └── useAuth.ts         # Authentication hook
-│       └── types/
-│           └── index.ts           # TypeScript type definitions
-└── README.md                      # This file
+│   ├── index.html                 # Static HTML (public copy)
+│   ├── public/                    # Public assets
+│   │   └── index.html
+│   ├── pages/                     # Next.js pages
+│   │   ├── _app.js
+│   │   ├── _document.js
+│   │   ├── dashboard.js
+│   │   ├── index.js
+│   │   ├── login.js
+│   │   ├── passkey-setup.js
+│   │   ├── register.js
+│   │   └── verify-email.js
+│   ├── src/                       # React + TypeScript source (alternate structure)
+│   │   ├── App.tsx
+│   │   ├── App.css
+│   │   ├── index.tsx
+│+│   │   ├── components/
+│   │   │   ├── Authentication/
+│   │   │   │   ├── Login.tsx
+│   │   │   │   └── Register.tsx
+│   │   │   ├── Dashboard/
+│   │   │   │   └── Dashboard.tsx
+│   │   │   ├── Invoices/
+│   │   │   │   ├── InvoiceList.tsx
+│   │   │   │   └── CreateInvoice.tsx
+│   │   │   ├── Payments/
+│   │   │   │   └── PaymentPage.tsx
+│   │   │   ├── QRGenerator/
+│   │   │   │   └── QRGenerator.tsx
+│   │   │   ├── EInvoice/
+│   │   │   │   └── EInvoice.tsx
+│   │   │   └── Common/
+│   │   │       └── Navbar.tsx
+│   │   ├── components/ (root copy)
+│   │   │   ├── EInvoiceModule.js
+│   │   │   ├── InvoiceCreateForm.js
+│   │   │   ├── InvoicesModule.js
+│   │   │   ├── QRModule.js
+│   │   │   └── UserOperationModule.js
+│   │   ├── contexts/
+│   │   │   └── AuthContext.js
+│   │   ├── hooks/
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useEmailAuth.js
+│   │   │   ├── usePasskeySetup.js
+│   │   │   └── useWebAuthn.js
+│   │   ├── services/
+│   │   │   ├── api.ts
+│   │   │   ├── auth.ts
+│   │   │   ├── einvoice.ts
+│   │   │   ├── index.ts
+│   │   │   ├── invoices.ts
+│   │   │   ├── payments.ts
+│   │   │   ├── qr.ts
+│   │   │   └── userop.ts
+│   │   ├── styles/
+│   │   │   └── globals.css
+│   │   └── types/
+│   │       └── index.ts
+│   └── src/ (additional frontend files)
+└── README.md                      # This file (updated)
 ```
 
 ## Features Implemented
