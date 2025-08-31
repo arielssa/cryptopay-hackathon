@@ -1,0 +1,10 @@
+{
+    "smtp": {
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "smtp_user": "arielss77cc@gmail.com",
+        "from_email": "arielss77cc@gmail.com",
+        "from_name": "CryptoPay"
+    },
+    "server": "http://localhost:8000/api/register/"
+}
